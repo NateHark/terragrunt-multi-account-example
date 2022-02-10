@@ -1,0 +1,12 @@
+terraform_state_bucket_prefix: <add unique bucket prefix here>
+root_account_id: <add root AWS account ID here>
+aws_organization_unit_id: <add organization unit ID here>
+environments:
+  development:
+    name: "Development"
+    short_name: "dev"
+    owner_email: <add account owner (root user) email address here>
+  production:
+    name: "Production"
+    short_name: "prod"
+    owner_email: <add account owner (root user) email address here>
