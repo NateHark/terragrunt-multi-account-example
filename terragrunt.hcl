@@ -18,6 +18,7 @@ locals {
   account_name                  = local.environment_vars.locals.account_name
   account_id                    = local.environment_vars.locals.aws_account_id
   environment                   = local.environment_vars.locals.environment
+  aws_profile                   = local.environment_vars.locals.aws_profile
   aws_region                    = local.region_vars.locals.aws_region
   terraform_state_bucket_prefix = local.common_vars.terraform_state_bucket_prefix
 }
@@ -31,6 +32,7 @@ provider "aws" {
   region = "${local.aws_region}"
   # Only these AWS Account IDs may be operated on by this template
   allowed_account_ids = ["${local.account_id}"]
+  profile = "${local.aws_profile}"
 }
 EOF
 }
@@ -44,6 +46,7 @@ remote_state {
     key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = local.aws_region
     dynamodb_table = "terraform-locks"
+    profile        = "${local.aws_profile}"
   }
   generate = {
     path      = "backend.tf"

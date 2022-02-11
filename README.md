@@ -56,7 +56,7 @@ We'll use these credentials temporarily in order to create IAM roles in each acc
 After we're done creating the IAM roles, these credentials can be deactivated.
 
 1. Create access keys for the root user in the `dev` and `prod` accounts
-1. Add these keys to `~/.aws/credentials` as follows:
+1. Add these keys to `~/.aws/credentials` as follows. The profile names must match the value of `aws_profile` in `env.hcl`
 
     ```bash
     [dev]
@@ -70,7 +70,6 @@ After we're done creating the IAM roles, these credentials can be deactivated.
 1. Run the following commands to create IAM roles in the `dev` account
 
     ```bash
-    $ export AWS_PROFILE=dev    # Enable the dev profile
     $ cd `live/dev`
     $ terragrunt run-all plan   # This should run without error and produce a summary of the changes that will be made
     $ terragrunt run-all apply  # This will apply the changes
@@ -79,7 +78,6 @@ After we're done creating the IAM roles, these credentials can be deactivated.
 1. Repeat for the `prod` account
 
     ```bash
-    $ export AWS_PROFILE=prod   # Enable the prod profile
     $ cd `live/prod`
     $ terragrunt run-all plan   # This should run without error and produce a summary of the changes that will be made
     $ terragrunt run-all apply  # This will apply the changes
@@ -165,7 +163,6 @@ Follow these steps in order to add a new environment:
 1. Create the new account
 
     ```bash
-    $ export AWS_PROFILE=root
     $ cd live/root
     $ terragrunt run-all plan   # Expect creation of a new AWS account and an update to the root account's CloudAdmin IAM role
     $ terragrunt run-all apply
