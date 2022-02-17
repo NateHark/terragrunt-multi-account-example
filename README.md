@@ -17,7 +17,7 @@ This repository provides a minimalist example of multi-account, multi-region AWS
 |-- terragrunt.hcl           # The root Terragrunt configuration 
 ```
 
-# Prequisites
+# Prerequisites
 [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli), [Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/), and the AWS CLI are installed and configured.
 
 # Assumptions
